@@ -1,73 +1,85 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1440" height="360" viewBox="0 0 1440 360" fill="none">
   <defs>
-    <linearGradient id="paper" x1="0" y1="0" x2="1440" y2="360" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#F4F2EC"/><stop offset=".58" stop-color="#EAEAE5"/><stop offset="1" stop-color="#E4E8E5"/>
+    <linearGradient id="night" x1="0" y1="0" x2="1440" y2="360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#070A0D"/><stop offset=".56" stop-color="#0B1117"/><stop offset="1" stop-color="#0D1019"/>
     </linearGradient>
-    <linearGradient id="air" x1="820" y1="75" x2="1360" y2="300" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#A5D8CB" stop-opacity="0"/><stop offset=".46" stop-color="#83BDB2" stop-opacity=".5"/><stop offset="1" stop-color="#AFC3DB" stop-opacity="0"/>
-    </linearGradient>
-    <linearGradient id="speed" x1="-50" y1="0" x2="0" y2="0" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E88152" stop-opacity="0"/><stop offset="1" stop-color="#E88152" stop-opacity=".68"/>
-    </linearGradient>
-    <radialGradient id="sunwash" cx="0" cy="0" r="1" gradientTransform="matrix(400 0 0 230 1110 174)" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#B8DBD1" stop-opacity=".34"/><stop offset="1" stop-color="#B8DBD1" stop-opacity="0"/>
+    <radialGradient id="hangarGlow" cx="0" cy="0" r="1" gradientTransform="matrix(460 0 0 250 1100 174)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#16353A" stop-opacity=".58"/><stop offset=".62" stop-color="#172431" stop-opacity=".2"/><stop offset="1" stop-color="#172431" stop-opacity="0"/>
     </radialGradient>
-    <filter id="shadow" x="-100%" y="-100%" width="300%" height="300%">
+    <linearGradient id="air" x1="790" y1="70" x2="1380" y2="300" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#65E3C8" stop-opacity="0"/><stop offset=".48" stop-color="#65E3C8" stop-opacity=".3"/><stop offset="1" stop-color="#829CFF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="streak" x1="-65" y1="0" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#60E1CA" stop-opacity="0"/><stop offset="1" stop-color="#60E1CA" stop-opacity=".75"/>
+    </linearGradient>
+    <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="2.4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="shade" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur in="SourceAlpha" stdDeviation="2.5" result="blur"/>
       <feOffset in="blur" dx="1" dy="3" result="offset"/>
-      <feFlood flood-color="#24312F" flood-opacity=".24" result="shade"/>
-      <feComposite in="shade" in2="offset" operator="in" result="shadow"/>
-      <feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge>
+      <feFlood flood-color="#000000" flood-opacity=".72" result="shadow"/>
+      <feComposite in="shadow" in2="offset" operator="in" result="cast"/>
+      <feMerge><feMergeNode in="cast"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
     <clipPath id="clip"><rect width="1440" height="360" rx="20"/></clipPath>
   </defs>
   <g clip-path="url(#clip)">
-    <rect width="1440" height="360" fill="url(#paper)"/>
-    <rect width="1440" height="360" fill="url(#sunwash)"/>
+    <rect width="1440" height="360" fill="url(#night)"/>
+    <rect width="1440" height="360" fill="url(#hangarGlow)"/>
 
-    <!-- Open, airy flight marks. These are not a circuit or a track. -->
-    <path d="M770 270C897 244 949 193 1035 151C1132 103 1249 95 1374 112" stroke="url(#air)" stroke-width="1.4"/>
-    <path d="M818 90C943 112 1022 156 1116 212C1196 260 1281 283 1370 278" stroke="#93ADA7" stroke-opacity=".2" stroke-width="1"/>
-    <path d="M914 320C1010 291 1065 276 1139 264" stroke="#D4A286" stroke-opacity=".28" stroke-width="1"/>
-    <circle cx="1340" cy="74" r="2" fill="#DB8058" fill-opacity=".55"/>
-    <circle cx="872" cy="131" r="1.5" fill="#6C9E91" fill-opacity=".6"/>
+    <!-- Sparse atmospheric marks, with no visible circuit or race track. -->
+    <path d="M748 272C894 245 964 198 1058 157C1151 117 1255 105 1384 119" stroke="url(#air)" stroke-width="1.4"/>
+    <path d="M827 82C949 109 1033 151 1128 207C1210 255 1294 279 1382 273" stroke="#96B0B9" stroke-opacity=".12" stroke-width="1"/>
+    <path d="M98 289h314" stroke="#91A7A9" stroke-opacity=".12"/>
+    <path d="M98 289h34" stroke="#58DCC2" stroke-opacity=".82" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="1370" cy="72" r="2" fill="#E07D58" fill-opacity=".65"/>
+    <circle cx="840" cy="130" r="1.5" fill="#60DCC4" fill-opacity=".68"/>
 
-    <!-- A small five inch FPV quad, viewed from above. -->
-    <g filter="url(#shadow)">
-      <animateMotion dur="34s" rotate="auto" repeatCount="indefinite" path="M1060 93C1188 93 1290 132 1290 180C1290 228 1188 267 1060 267C932 267 850 228 850 180C850 132 932 93 1060 93Z"/>
-      <g>
-        <!-- light, fast prop discs -->
-        <ellipse cx="20" cy="-20" rx="10.5" ry="3.3" transform="rotate(-26 20 -20)" fill="#D8E9E3" fill-opacity=".86" stroke="#74847F" stroke-opacity=".58" stroke-width=".8"/>
-        <ellipse cx="20" cy="20" rx="10.5" ry="3.3" transform="rotate(26 20 20)" fill="#D8E9E3" fill-opacity=".86" stroke="#74847F" stroke-opacity=".58" stroke-width=".8"/>
-        <ellipse cx="-20" cy="-20" rx="10.5" ry="3.3" transform="rotate(26 -20 -20)" fill="#D8E9E3" fill-opacity=".86" stroke="#74847F" stroke-opacity=".58" stroke-width=".8"/>
-        <ellipse cx="-20" cy="20" rx="10.5" ry="3.3" transform="rotate(-26 -20 20)" fill="#D8E9E3" fill-opacity=".86" stroke="#74847F" stroke-opacity=".58" stroke-width=".8"/>
-        <!-- true X frame and carbon arms -->
-        <path d="M-5-4-18-19M-5 4-18 19M5-4 18-19M5 4 18 19" stroke="#303A3A" stroke-width="5.2" stroke-linecap="round"/>
-        <path d="M-5-4-18-19M-5 4-18 19M5-4 18-19M5 4 18 19" stroke="#63716E" stroke-opacity=".62" stroke-width="1" stroke-linecap="round"/>
-        <!-- four distinct motor bells -->
-        <circle cx="-20" cy="-20" r="4.2" fill="#273130" stroke="#485956" stroke-width="1.1"/>
-        <circle cx="-20" cy="20" r="4.2" fill="#273130" stroke="#485956" stroke-width="1.1"/>
-        <circle cx="20" cy="-20" r="4.2" fill="#273130" stroke="#DA7952" stroke-width="1.5"/>
-        <circle cx="20" cy="20" r="4.2" fill="#273130" stroke="#DA7952" stroke-width="1.5"/>
-        <circle cx="-20" cy="-20" r="1.15" fill="#D7E6E1"/><circle cx="-20" cy="20" r="1.15" fill="#D7E6E1"/>
-        <circle cx="20" cy="-20" r="1.15" fill="#FFB18A"/><circle cx="20" cy="20" r="1.15" fill="#FFB18A"/>
-        <!-- narrow body, forward camera, flight stack and battery -->
-        <path d="M-12-5-4-8 8-7 15-3 15 3 8 7-4 8-12 5Z" fill="#35413F" stroke="#202A29" stroke-width="1.2"/>
-        <path d="M-8-4 6-4 9 0 6 4-8 4Z" fill="#B2B887"/>
-        <path d="M-6-5v10M1-5v10" stroke="#48524C" stroke-width="1"/>
-        <path d="M12-3 20 0 12 3Z" fill="#D8754D" stroke="#A75537" stroke-width=".8"/>
-        <circle cx="16" cy="0" r="1.35" fill="#F7E7CF"/>
-        <path d="M-12 0h-8" stroke="#505F5B" stroke-width="1.4" stroke-linecap="round"/>
-        <path d="M-15-2v4" stroke="#D8754D" stroke-width="1.2" stroke-linecap="round"/>
+    <!-- Small five inch X-frame FPV racer. Forward direction is to the right. -->
+    <g>
+      <!-- The drone flies a faster, smooth loop. Path direction supplies yaw. -->
+      <animateMotion dur="17s" rotate="auto" repeatCount="indefinite" path="M1055 86C1187 86 1300 127 1300 180C1300 233 1187 274 1055 274C923 274 840 233 840 180C840 127 923 86 1055 86Z"/>
+      <!-- Changing foreshortening and cross-axis lean suggest forward pitch and roll. -->
+      <g filter="url(#shade)">
+        <animateTransform attributeName="transform" type="scale" values="1 1;.94 .83;1.04 1.08;.96 .91;1 1" keyTimes="0;.24;.5;.76;1" keySplines=".35 0 .65 1;.35 0 .65 1;.35 0 .65 1;.35 0 .65 1" calcMode="spline" dur="4.4s" repeatCount="indefinite"/>
+        <g>
+          <animateTransform attributeName="transform" type="skewY" values="0;-7;5;-4;0" keyTimes="0;.25;.5;.75;1" keySplines=".35 0 .65 1;.35 0 .65 1;.35 0 .65 1;.35 0 .65 1" calcMode="spline" dur="3.8s" repeatCount="indefinite"/>
+          <!-- short trailing airflow accents -->
+          <path d="M-39-7h-22M-42 0h-25M-39 7h-22" stroke="url(#streak)" stroke-width="1.5" stroke-linecap="round"/>
+          <g filter="url(#softGlow)">
+            <!-- dark prop discs -->
+            <ellipse cx="-21" cy="-20" rx="10.5" ry="3.2" transform="rotate(-28 -21 -20)" fill="#162024" stroke="#718580" stroke-opacity=".58" stroke-width=".8"/>
+            <ellipse cx="-21" cy="20" rx="10.5" ry="3.2" transform="rotate(28 -21 20)" fill="#162024" stroke="#718580" stroke-opacity=".58" stroke-width=".8"/>
+            <ellipse cx="21" cy="-20" rx="10.5" ry="3.2" transform="rotate(28 21 -20)" fill="#1A2025" stroke="#50DCC1" stroke-opacity=".72" stroke-width=".8"/>
+            <ellipse cx="21" cy="20" rx="10.5" ry="3.2" transform="rotate(-28 21 20)" fill="#1A2025" stroke="#50DCC1" stroke-opacity=".72" stroke-width=".8"/>
+            <!-- X arms in matte carbon -->
+            <path d="M-5-4-19-19M-5 4-19 19M5-4 19-19M5 4 19 19" stroke="#171D21" stroke-width="6" stroke-linecap="round"/>
+            <path d="M-5-4-19-19M-5 4-19 19M5-4 19-19M5 4 19 19" stroke="#5A6B6B" stroke-opacity=".68" stroke-width="1" stroke-linecap="round"/>
+            <!-- four motor bells -->
+            <circle cx="-21" cy="-20" r="4.4" fill="#101619" stroke="#596967" stroke-width="1.2"/>
+            <circle cx="-21" cy="20" r="4.4" fill="#101619" stroke="#596967" stroke-width="1.2"/>
+            <circle cx="21" cy="-20" r="4.4" fill="#101619" stroke="#56DCC3" stroke-width="1.4"/>
+            <circle cx="21" cy="20" r="4.4" fill="#101619" stroke="#56DCC3" stroke-width="1.4"/>
+            <circle cx="-21" cy="-20" r="1.1" fill="#8A9995"/><circle cx="-21" cy="20" r="1.1" fill="#8A9995"/>
+            <circle cx="21" cy="-20" r="1.1" fill="#A4FFF0"/><circle cx="21" cy="20" r="1.1" fill="#A4FFF0"/>
+            <!-- Underslung battery, visible beneath the carbon top plate -->
+            <path d="M-12 0-7-6 7-6 12 0 8 13-7 13-12 7Z" fill="#090E11" stroke="#4B5B5D" stroke-width="1.1"/>
+            <path d="M-8 7 7 7 5 12-6 12Z" fill="#20292C" stroke="#70817D" stroke-opacity=".64" stroke-width=".8"/>
+            <path d="M-5 8v4m9-4v4" stroke="#9EACA7" stroke-opacity=".55" stroke-width=".8"/>
+            <!-- top plate and camera nose -->
+            <path d="M-10-5-4-9 8-8 15-3 16 0 15 3 8 8-4 9-10 5Z" fill="#252D30" stroke="#6B7B7B" stroke-width="1.15"/>
+            <path d="M-5-4 6-4 9 0 6 4-5 4Z" fill="#11191C" stroke="#384746" stroke-width=".8"/>
+            <path d="M12-3 21 0 12 3Z" fill="#1A2124" stroke="#657576" stroke-width=".9"/>
+            <circle cx="17" cy="0" r="1.5" fill="#E1845E"/>
+            <path d="M-12 0h-7" stroke="#7E8D88" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M-15-2v4" stroke="#E1845E" stroke-width="1.1" stroke-linecap="round"/>
+          </g>
+        </g>
       </g>
-      <!-- short speed accents follow the airframe, not a drawn racing lane -->
-      <path d="M-35-7h-18M-36 0h-25M-35 7h-18" stroke="url(#speed)" stroke-width="1.4" stroke-linecap="round"/>
     </g>
 
-    <!-- Static name, aligned to one clear left margin. -->
-    <path d="M132 124h34" stroke="#D8754D" stroke-width="2" stroke-linecap="round"/>
-    <text x="130" y="190" fill="#202B2A" font-family="Inter, ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="54" font-weight="560" letter-spacing="-1.8">liltaket</text>
-    <path d="M130 219h278" stroke="#52625E" stroke-opacity=".22"/>
-    <circle cx="130" cy="219" r="2" fill="#D8754D"/>
+    <!-- Static name, aligned to a clear left margin. -->
+    <text x="130" y="190" fill="#E8F0ED" font-family="Inter, ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="54" font-weight="560" letter-spacing="-1.8">liltaket</text>
   </g>
 </svg>
