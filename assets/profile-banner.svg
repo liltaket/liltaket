@@ -12,15 +12,29 @@
     <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="matrix(0 180 -540 0 720 180)" gradientUnits="userSpaceOnUse">
       <stop stop-color="#5376B8" stop-opacity=".18"/><stop offset="1" stop-color="#5376B8" stop-opacity="0"/>
     </radialGradient>
-    <linearGradient id="glass" x1="525" y1="145" x2="915" y2="219" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E7F6FF" stop-opacity=".18"/><stop offset=".46" stop-color="#D5E8FF" stop-opacity=".1"/><stop offset="1" stop-color="#B9D6FF" stop-opacity=".15"/>
+    <linearGradient id="glass" x1="538" y1="143" x2="897" y2="220" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6FCFF" stop-opacity=".24"/><stop offset=".4" stop-color="#DDEEFF" stop-opacity=".12"/><stop offset=".72" stop-color="#BDD9FF" stop-opacity=".08"/><stop offset="1" stop-color="#E4F7FF" stop-opacity=".2"/>
     </linearGradient>
     <linearGradient id="glassEdge" x1="510" y1="143" x2="930" y2="217" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFFFFF" stop-opacity=".56"/><stop offset=".48" stop-color="#C5E8FF" stop-opacity=".22"/><stop offset="1" stop-color="#FFFFFF" stop-opacity=".42"/>
+      <stop stop-color="#FFFFFF" stop-opacity=".76"/><stop offset=".32" stop-color="#C5E8FF" stop-opacity=".34"/><stop offset=".7" stop-color="#D5D7FF" stop-opacity=".4"/><stop offset="1" stop-color="#FFFFFF" stop-opacity=".68"/>
     </linearGradient>
     <linearGradient id="glassShine" x1="720" y1="143" x2="720" y2="177" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFFFFF" stop-opacity=".24"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop stop-color="#FFFFFF" stop-opacity=".36"/><stop offset=".55" stop-color="#FFFFFF" stop-opacity=".1"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
     </linearGradient>
+    <radialGradient id="glassRefraction" cx="0" cy="0" r="1" gradientTransform="matrix(142 0 0 34 604 154)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity=".25"/><stop offset="1" stop-color="#B9DEFF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glassBlur" x="-30%" y="-100%" width="160%" height="300%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+    <filter id="glassShadow" x="-20%" y="-60%" width="140%" height="240%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="7" result="blur"/>
+      <feOffset in="blur" dy="5" result="offsetBlur"/>
+      <feFlood flood-color="#020713" flood-opacity=".6" result="shadowColor"/>
+      <feComposite in="shadowColor" in2="offsetBlur" operator="in" result="shadow"/>
+      <feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="glassClip"><rect x="510" y="143" width="420" height="74" rx="37"/></clipPath>
     <filter id="softGlow" x="-30%" y="-100%" width="160%" height="300%">
       <feGaussianBlur stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
@@ -47,12 +61,20 @@
     </g>
 
     <g>
-      <animateTransform attributeName="transform" type="translate" values="0 0;0 -2;1 -3;0 -2;0 0" keyTimes="0;.25;.5;.75;1" keySplines=".4 0 .6 1;.4 0 .6 1;.4 0 .6 1;.4 0 .6 1" calcMode="spline" dur="12s" repeatCount="indefinite"/>
-      <rect x="510" y="143" width="420" height="74" rx="37" fill="url(#glass)" stroke="url(#glassEdge)" stroke-width="1.2"/>
-      <path d="M548 144.5h344c19.3 0 35 15.7 35 35v1.5H513v-1.5c0-19.3 15.7-35 35-35Z" fill="url(#glassShine)"/>
-      <path d="M535 202.5c45 8 325 8 370 0" stroke="#FFFFFF" stroke-opacity=".2" stroke-width="1" stroke-linecap="round"/>
-      <rect x="511" y="144" width="418" height="72" rx="36" stroke="#FFFFFF" stroke-opacity=".12"/>
-      <text x="720" y="194" text-anchor="middle" fill="#F4FAF8" font-family="Inter, ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="46" font-weight="600" letter-spacing="1.2">liltaket</text>
+      <animateMotion dur="28s" repeatCount="indefinite" path="M0 0 C7 -6 14 -3 12 2 C10 8 1 9 -5 7 C-13 4 -13 -4 -7 -7 C-2 -9 4 -5 0 0"/>
+      <rect x="506" y="139" width="428" height="82" rx="41" fill="#85CFFF" fill-opacity=".2" filter="url(#glassBlur)"/>
+      <g filter="url(#glassShadow)">
+        <rect x="510" y="143" width="420" height="74" rx="37" fill="url(#glass)" stroke="url(#glassEdge)" stroke-width="1.25"/>
+        <g clip-path="url(#glassClip)">
+          <ellipse cx="604" cy="154" rx="142" ry="34" fill="url(#glassRefraction)"/>
+          <ellipse cx="852" cy="218" rx="118" ry="27" fill="#A898FF" fill-opacity=".1" filter="url(#glassBlur)"/>
+          <path d="M548 144.5h344c19.3 0 35 15.7 35 35v1.5H513v-1.5c0-19.3 15.7-35 35-35Z" fill="url(#glassShine)"/>
+        </g>
+        <path d="M540 147.5c58-3 302-3 360 0" stroke="#FFFFFF" stroke-opacity=".58" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M535 202.5c45 8 325 8 370 0" stroke="#FFFFFF" stroke-opacity=".26" stroke-width="1" stroke-linecap="round"/>
+        <rect x="511" y="144" width="418" height="72" rx="36" stroke="#FFFFFF" stroke-opacity=".16"/>
+        <text x="720" y="194" text-anchor="middle" fill="#F4FAF8" font-family="Inter, ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="46" font-weight="600" letter-spacing="1.2">liltaket</text>
+      </g>
     </g>
   </g>
 </svg>
