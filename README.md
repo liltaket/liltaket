@@ -11,6 +11,6 @@ I'm studying Information Technology Engineering at KTH in Sweden. I like buildin
 - **[MowgliNext](https://github.com/mowglinext/mowglinext)**: I'm a collaborator on the MowgliNext project, contributing to an autonomous mower that uses RTK navigation.
 - **[Lugn](https://github.com/liltaket/lugn)**: My home automation project is still in development and currently runs my room on autopilot.
 - **[Mowgli LoRa Link](https://github.com/liltaket/mowgli-lora-link)**: A LoRa modem and communication protocol for Mowgli robotics.
-- I built and maintain the website for Södertälje Modellflygklubb: [sodertaljemfk.se](https://sodertaljemfk.se) · [GitHub repository](https://github.com/liltaket/sodertalje-mfk-website).
+- **[Södertälje MFK website](https://github.com/liltaket/sodertalje-mfk-website)**: I built and maintain the club's website at [sodertaljemfk.se](https://sodertaljemfk.se).
 
 Outside my studies, I compete in FPV drone racing in Sweden and help organize events around the sport.
